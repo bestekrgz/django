@@ -162,6 +162,7 @@ def view_message(request, pk):
     context = {'message': message}
     return render(request, 'users/message.html', context)
 
+
 @login_required(login_url='login')
 def send_message(request, pk):
     recipient = Profile.objects.get(id=pk)
@@ -180,7 +181,6 @@ def send_message(request, pk):
 
             messages.success(request, 'Message sent successfully')
             return redirect('user_profile', pk=recipient.id)
-
 
     context = {'recipient': recipient, 'form': form}
     return render(request, 'users/message_form.html', context)
